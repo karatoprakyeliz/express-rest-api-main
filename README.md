@@ -126,17 +126,10 @@ Base URL: `http://localhost:3000/api`
 
 ---
 
-## 📜 Lisans
-
-Bu proje MIT lisansı ile lisanslanmıştır.
-
----
 
 ## 👨‍💻 Geliştirici
 
-> Backend Developer: Yeliz Karatoprak
-> Şehir: KONYA
-> Hedef: Backend Developer
+> Developer: Yeliz Karatoprak
 
 ```
 
