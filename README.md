@@ -101,7 +101,18 @@ Bu komut:
 
 ## 🧪 API'yi Test Etmek
 
-API’yi Postman veya benzeri bir araçla test edebilirsiniz.
+API’yi Postman veya benzeri API test araçları ile kolayca test edebilirsiniz.  
+Projede tüm CRUD (Create, Read, Update, Delete) işlemleri için gerekli HTTP istekleri mevcuttur.  
+Postman koleksiyonunu kullanarak bu istekleri hızlıca çalıştırabilir ve API fonksiyonlarını deneyebilirsiniz. 
+
+Proje, kullanıcı ve gönderi için tam CRUD işlemlerini destekler:
+
+- Yeni veri oluşturma (POST)
+- Veri okuma (GET)
+- Güncelleme (PUT)
+- Silme (DELETE)
+
+Postman koleksiyonu ile tüm bu istekleri kolayca deneyebilirsiniz.
 Base URL: `http://localhost:3000/api`
 
 ---
