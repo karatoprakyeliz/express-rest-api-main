@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "34cef48f-e299-480d-8f65-ad8d023549e3",
+		"name": "Perwatch Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "41275180"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "GetAllPost",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GetPostsUserById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GetPostsTagName",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GetPostsById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Güncellenmiş Post Başlığı\",\r\n  \"content\": \"İçerik güncellendi.\",\r\n  \"isPublished\": false,\r\n  \"authorId\": 2,\r\n  \"tags\": [\"docker\", \"backend\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/posts"
+					},
+					"response": []
+				},
+				{
+					"name": "PutPosts",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "DelPosts",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GetAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3000/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "PostNewUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Yeni Post Başlığı\",\r\n  \"content\": \"Bu gönderi içeriğidir.\",\r\n  \"isPublished\": true,\r\n  \"authorId\": 1,\r\n  \"tags\": [\"docker\", \"backend\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "PutUsersById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Yeliz K.\",\r\n  \"email\": \"yeliz.k@example.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DelUserById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3000/api/users/11"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
