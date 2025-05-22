@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js" 
+  // → Prisma, bu şemaya göre JavaScript/TypeScript için bir client kütüphanesi üretir.
+}
+
+datasource db {
+  provider = "postgresql"        
+  // → Veritabanı tipi PostgreSQL.
+  url      = env("DATABASE_URL")
+  // → Bağlantı adresi .env dosyasından okunur.
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  // → Primary key; her yeni kayıtta otomatik artar.
+
+  name      String   
+  // → Kullanıcının adı.
+
+  email     String   @unique
+  // → E-posta; her kullanıcı için benzersiz olmalı.  
+
+  role      String   @default("user")
+  // → İleride yetkilendirme için (admin, user vb.)
+
+  createdAt DateTime @default(now())
+  // → Kayıt oluşturulma zamanı, otomatik atanır.
+
+  updatedAt DateTime @updatedAt
+  // → Her güncellemede otomatik güncellenir.
+
+  posts     Post[]  
+  // → Kullanıcı ile gönderiler arasında bire-çoğa ilişki.
+}
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  // → Primary key.
+
+  title       String    
+  // → Gönderi başlığı.
+
+  slug        String?   
+  // → SEO ve URL için uygun kısa başlık; unique olmalı.
+
+  content     String    
+  // → Gönderi içeriği.
+
+  isPublished Boolean  @default(false)
+  // → Taslak mı (false), yayınlanmış mı (true).
+
+  createdAt   DateTime @default(now())
+  // → Oluşturulma zamanı.
+
+  updatedAt   DateTime @updatedAt
+  // → Güncelleme zamanı.
+
+  author      User     @relation(fields: [authorId], references: [id])
+  // → “Post”un ait olduğu “User” kaydını referanslar.
+
+  authorId    Int
+  // → Foreign key.
+
+  tags        Tag[]    @relation("PostTags")
+  // → Çoktan çoğa Tag ilişkisi; Prisma bu ilişkiyi ara tabloyla yönetir.
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  // → Primary key.
+
+  name  String @unique
+  // → Etiket adı; tekrar etmemeli.
+
+  posts Post[] @relation("PostTags")
+  // → Aynı “PostTags” ilişki adıyla geri dönüş; çoktan çoğa ilişki.
+}

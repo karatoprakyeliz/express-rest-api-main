@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: perwatch_db
+    environment:
+      POSTGRES_DB: perwatch_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: always # → Veritabanı servisinin kapanması durumunda otomatik yeniden başlatılır.
+
+  backend:
+    build: .
+    container_name: perwatch_backend
+    ports:
+      - "3000:3000" # → Uygulama API portu
+      - "5555:5555" # → Prisma Studio için port (gerekirse)
+    env_file:
+      - .env # → Ortam değişkenleri bu dosyadan okunur
+    volumes:
+      - .:/app # → Kodları container içine mount eder
+      - /app/node_modules # → Container içindeki bağımlılık klasörü dışarı taşınmaz (host ile çakışmayı önler)
+    depends_on:
+      db:
+        condition: service_healthy
+    working_dir: /app # → Komutların çalıştırılacağı dizin
+    command: sh -c "npx prisma generate && npx prisma migrate deploy  && npm run dev"
+
+    restart: on-failure # → Backend çökünce yeniden başlatılır, ama sonsuz döngüye girmez
+
+volumes:
+  pgdata:
+    # → PostgreSQL verisi bu volume içinde kalıcı olur
